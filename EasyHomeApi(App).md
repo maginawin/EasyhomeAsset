@@ -1,0 +1,218 @@
+# EasyHome API For App
+---
+
+### 版本信息
+- version 1.0 -- 2016/07/06
+    * host: <i>http://easyhome.rgbw.hk/api/1.0</i>
+    * init
+
+
+- version 1.0.1 -- 2016/07/13
+    * host: <i>http://easyhome.rgbw.hk/api/1.0</i>
+    * 新增
+        1. 更改密码
+    * 修改
+        1. 更新用户信息 - 移除更改密码
+        2. 找回密码 - 更新 url
+
+### 注意事项
+- 所有字符串均使用 UTF-8 编码
+
+---
+
+
+## 1. 用户注册
+- **Base**
+    * url: host/user/register
+    * type: post
+	* content-type: json
+
+
+- **Request**
+<dl>
+<dd>{</dd>
+  <dd>"version" : "1.0",</dd>
+  <dd>"email" : "username@email.com",</dd>
+  <dd>"password" : "123456",</dd>
+  <dd>"nickname" : "Nickname"</dd>
+<dd>}</dd>
+</dl>
+     * version: version
+     * email: user email
+         + _唯一，不能为空_
+     * password: user password
+         + _6 ~ 32 位 ASCII 字符_
+     * nickname: user nickname
+         + _可以为空，若为空则默认 nickname 为 "Nickname"_
+
+
+- **Response**
+<dl>
+<dd>{</dd>
+<dd>"version" : "1.0",</dd>
+<dd>"status" : "0",</dd>
+<dd>"email" : "username@email.com",</dd>
+<dd>"nickname" : "Nickname"</dd>
+<dd>}</dd>
+</dl>
+    * version: version
+    * status: status
+        + _"0": 成功_
+        + _"1": 失败，邮箱已经存在_
+        + _"2": 失败，服务器超时_
+        + _"3": 失败，未知错误_
+    * email: user email
+        + _注册使用的邮箱_
+    * nickname: user nickname
+        + _注册使用的昵称_
+
+## 2. 登录
+- **Base**
+    * url: host/user/login
+    * type: post
+    * content-type: json
+
+
+- **Request**
+<dl>
+<dd>{</dd>
+<dd>"version" : "1.0",</dd>
+<dd>"email" : "username@email.com",</dd>
+<dd>"password" : "123456"</dd>
+<dd>}</dd>
+</dl>
+    * version: version
+    * email: user email
+    * password: user password
+
+
+- **Response**
+<dl>
+<dd>{</dd>
+<dd>"version" : "1.0",</dd>
+<dd>"token" : "JJWT token",</dd>
+<dd>"status" : "0",</dd>
+<dd>"nickname" : "Nickname",</dd>
+<dd>}</dd>
+</dl>
+    * version: version
+    * token: JJWT token
+        + _默认 token 有效期为五天_
+    * status: status
+        + _"0": 登录成功_
+        + _"1": 登录失败， 用户名不存在_
+        + _"2": 登录失败， 用户密码错误_
+        + _"3": 服务器错误_
+
+
+## 3. 更新用户信息
+- **Base**
+    * url: host/user/update
+    * type: post
+    * content-type: json
+
+
+- **Request**
+<dl>
+<dd>{</dd>
+<dd>"version" : "1.0",</dd>
+<dd>"token" : "JJWT token",</dd>
+<dd>"type" : "update type",</dd>
+<dd>"content" : "update content"</dd>
+<dd>}</dd>
+</dl>
+    * version: version
+    * token: JJWT token
+    * type: update type
+        + _"0": update nickname_
+    * content: update content
+        + _用于更新的内容，比如 type = 0，则此处的 content 应该是需要更新的nickname_
+
+
+- **Response**
+<dl>
+<dd>{</dd>
+<dd>"version" : "1.0",</dd>
+<dd>"type" : "update type",</dd>
+<dd>"status" : "update status"</dd>
+<dd>}</dd>
+</dl>
+    * version:
+    * type:
+        + _"0": update nickname_
+    * status:
+        + _"0": 更新成功_
+        + _"1": 用于更改的 token 失效，需要 App 重新登录并登录获取 token_
+        + _"2": 更新失败，未知错误_
+
+
+## 4. 更改密码
+- **Base**
+    * url: host/user/alterpassword
+    * type: post
+    * content-type: json
+
+
+- **Request**
+<dl>
+<dd>{</dd>
+<dd>"version" : "1.0",</dd>
+<dd>"email" : "username@email.com",</dd>
+<dd>"oldpassword" : "123456",</dd>
+<dd>"newpassword" : "abcdefg"</dd>
+<dd></dd>
+<dd>}</dd>
+</dl>
+    * version: version
+    * email: user email
+    * oldpassword:
+        + _旧密码_
+    * newpassword:
+        + _新密码_
+
+
+- **Response**
+<dl>
+<dd>{</dd>
+<dd>"version" : "1.0",</dd>
+<dd>"status" : "0"</dd>
+<dd>}</dd>
+</dl>
+    * version: version
+    * status: alter user new password status
+        + _"0": 更新成功_
+        + _"1": 更新失败，Email 不存在，_
+        + _"2": 更新失败，oldpassword 错误_
+        + _"3": 更新失败，未知错误_
+
+## 5. 找回密码
+- **Base**
+    * url: host/user/retrievepassword
+    * type: post
+    * content-type: json
+
+
+- **Request**
+<dl>
+<dd>{</dd>
+<dd>"version" : "1.0",</dd>
+<dd>"email" : "username@email.com"</dd>
+<dd>}</dd>
+</dl>
+    * version: version
+    * email: user email
+
+
+- **Response**
+<dl>
+<dd>{</dd>
+<dd>"version" : "1.0",</dd>
+<dd>"status" : "0"</dd>
+<dd>}</dd>
+</dl>
+    * version: version
+    * status: retrieve status
+        + _"0": 已经发送找回密码的邮件到注册邮箱，下一步：登录注册邮箱_
+        + _"1": 邮箱尚未注册_
+
+---
