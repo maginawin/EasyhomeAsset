@@ -15,6 +15,11 @@
         1. 更新用户信息 - 移除更改密码
         2. 找回密码 - 更新 url
 
+- version 1.0.1 -- 2016/07/15
+    * host: <i>http://easyhome.rgbw.hk/api/1.0</i>
+    * 新增
+         1. 找回密码邮箱内容        
+
 ### 注意事项
 - 所有字符串均使用 UTF-8 编码
 
@@ -214,5 +219,18 @@
     * status: retrieve status
         + _"0": 已经发送找回密码的邮件到注册邮箱，下一步：登录注册邮箱_
         + _"1": 邮箱尚未注册_
+
+## 6. 找回密码内容
+- **邮件信息**
+    * 发件箱 sunricher_ios@sunricher.com
+    * 密码 security
+    * 标题 [EasyHome] Password reset request
+    * 发件人 Sunricher
+    * 内容
+        <p>You're receiving this email because you requested a password reset for the user <i style="color: orange">"user email"</i></p>
+        <p style="color: blue; text-decoration: underline; font-weight: bold">Reset password ></p>
+    * Reset password 超链 url
+        + [host/user/resetpassword?email=username@email.com&token=usertoken](http://easyhome.rgbw.hk/api/1.0/user/passwordreset?email=username@email.com&key=reestkey)
+        + 其中 key 为根据 email 生成的 token，有效期为 12 小时；有效期内跳转至直接更改密码的页面，有效期外跳转至失效页面；通过此 token 修改密码成功后，token 失效，再次使用此 token 更改密码无效。
 
 ---
