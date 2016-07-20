@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<easyhome_sync email="username@emial.com">
+	<!-- 房间，多个 -->
+	<room id="1" name="Room Name" switch="ON | OFF">
+	    <!-- 灯，多个 -->
+		<lamp id="200" name="Lamp Name" switch="ON | OFF" main_type="RF | ZIGBEE"
+			sub_type="RGBW | RGB | CCT | DIM">
+
+		    <!-- 事件，多个 -->
+			<event id="1" name="Event Name" switch="ON | OFF" date="2015-07-20"
+				repeat="0b0111111" type="COLOR | RUN | OFF" />
+
+		</lamp>
+
+		<!-- 场景，多个 -->
+		<scene id="2" name="Scene Name" />
+
+	</room>
+
+</easyhome_sync>

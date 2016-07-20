@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<easyhome_delete email="username@email.com" type="ROOM | LAMP | EVENT">
+    
+    <!-- 删除的 id，多个 -->
+    <id>1</id>
+    
+    <id>2</id>
+    
+</easyhome_delete>
