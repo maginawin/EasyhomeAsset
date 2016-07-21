@@ -259,28 +259,25 @@
     * url: host/easyhome/uploadinfo
     * type: post
     * content: xml
-
-    内容：easyhome_sync.xml
-    PS: 发送信息至服务器时 easyhome_sync 的 token 不能为空，需要为登录后保存的 token
+    * 内容：easyhome_sync.xml
+    * PS: 发送信息至服务器时 easyhome_sync 的 token 不能为空，需要为登录后保存的token
 
 ## 2. App 请求删除服务器信息
+- **Base**
     * url: host/easyhome/deleteinfo
     * type: post
     * content: xml
-
-    内容：easyhome_delete.xml
-    PS：发送至服务器时 easyhome_delete 的 token 不能为空，需要为登录后保存的 token
+    * 内容：easyhome_delete.xml
+    * PS：发送至服务器时 easyhome_delete 的 token 不能为空，需要为登录后保存的 token
 
 ## 3. App 向服务器请求信息同步
+- **Base**
     * url: host/easyhome/syncinfo
     * type: post
     * content: json
-
 - **Request**
-    {"version" : "1.0", "token" : "user token"}
-
+    * {"version" : "1.0", "token" : "user token"}
 - **Response**
     * content: xml
-
-    内容：easyhome_sync.xml
-    PS: 返回的信息中 token 可以为空
+    * 内容：easyhome_sync.xml
+    * PS: 返回的信息中 token 可以为空
