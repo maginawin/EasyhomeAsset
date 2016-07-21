@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<easyhome_sync email="username@emial.com">
-	<!-- 房间，多个 -->
+<easyhome_sync email="username@emial.com" token="user token" >
+	<!-- 房间，[0, N] -->
 	<room id="1" name="Room Name" switch="ON | OFF">
-	    <!-- 灯，多个 -->
+	    <!-- 灯，[0, N] -->
 		<lamp id="200" name="Lamp Name" switch="ON | OFF" main_type="RF | ZIGBEE"
 			sub_type="RGBW | RGB | CCT | DIM">
 
-		    <!-- 事件，多个 -->
+		    <!-- 事件，[0, N] -->
 			<event id="1" name="Event Name" switch="ON | OFF" date="2015-07-20"
 				repeat="0b0111111" type="COLOR | RUN | OFF" />
 
 		</lamp>
 
-		<!-- 场景，多个 -->
+		<!-- 场景，[0, N] -->
 		<scene id="2" name="Scene Name" />
 
 	</room>
