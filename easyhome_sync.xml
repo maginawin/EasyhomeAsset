@@ -2,13 +2,13 @@
 
 <easyhome_sync email="username@emial.com" token="user token" >
 	<!-- 房间，[0, N] -->
-	<room id="1" name="Room Name" switch="ON | OFF">
+	<room id="1" name="Room Name" switcher="ON | OFF">
 	    <!-- 灯，[0, N] -->
-		<lamp id="200" name="Lamp Name" switch="ON | OFF" main_type="RF | ZIGBEE"
+		<lamp id="200" name="Lamp Name" switcher="ON | OFF" main_type="RF | ZIGBEE"
 			sub_type="RGBW | RGB | CCT | DIM">
 
 		    <!-- 事件，[0, N] -->
-			<event id="1" name="Event Name" switch="ON | OFF" date="2015-07-20"
+			<event id="1" name="Event Name" switcher="ON | OFF" date="2015-07-20"
 				repeat="0b0111111" type="COLOR | RUN | OFF" />
 
 		</lamp>
