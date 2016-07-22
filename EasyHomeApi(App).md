@@ -106,7 +106,7 @@
 </dl>
     * version: version
     * token: JJWT token
-        + _默认 token 有效期为三十天_
+        + _默认 token 有效期为二十天_
     * status: status
         + _"0": 登录成功_
         + _"1": 登录失败， 用户名不存在_
