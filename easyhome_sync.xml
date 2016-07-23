@@ -8,8 +8,8 @@
 			sub_type="RGBW | RGB | CCT | DIM">
 
 		    <!-- 事件，[0, N] -->
-			<event id="1" name="Event Name" switcher="ON | OFF" date="2015-07-20"
-				day_repeat="0b0111111" event_type="COLOR | RUN | OFF" />
+			<event id="1" name="Event Name" switcher="ON | OFF" date="2015-07-20" time="01:00"
+				color="FFFFFF" is_cct="YES | NO" day_repeat="0b0111111" event_type="COLOR | RUN | OFF" />
 
 		</lamp>
 
