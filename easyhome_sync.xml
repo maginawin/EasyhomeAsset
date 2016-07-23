@@ -9,7 +9,7 @@
 
 		    <!-- 事件，[0, N] -->
 			<event id="1" name="Event Name" switcher="ON | OFF" date="2015-07-20"
-				repeat="0b0111111" type="COLOR | RUN | OFF" />
+				day_repeat="0b0111111" event_type="COLOR | RUN | OFF" />
 
 		</lamp>
 
