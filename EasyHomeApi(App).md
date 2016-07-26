@@ -24,6 +24,10 @@
     * host: <i>http://easyhome.rgbw.hk/api/1.0</i>
     * 新增
         1. 房间、场景、灯、事件信息同步
+
+- version 1.0 -- 2016/07/25
+    * 新增
+        1. 添加了 App 发送给服务器，服务器转发给设备的协议（参见三）
 ### 注意事项
 - 所有字符串均使用 UTF-8 编码
 
@@ -294,3 +298,51 @@
     * content: xml
     * 内容：easyhome_sync.xml
     * PS: 返回的信息中 token 可以为空
+
+# 三、App 远程控制命令
+
+## App 连接服务器地址：host，端口号：56789，连接方式：TCP
+
+## 1. **App 到服务器**
+
+- {HEADER, MAC_ADD, MAIN_TYPE, SUB_TYPE, COMMAND_TYPE, COMMAND, END}
+    * HEADER
+        + 0xA0
+        + 1 个字节
+    * MAC_ADD
+        + 需要服务器转发过去的 Mac 地址
+        + 8 个字节
+    * MAIN_TYPE
+        + 命令的主类型
+        + 1 个字节
+            - 0x01: 控制类
+    * SUB_TYPE
+        + 命令的次类型
+        + 1 个字节
+            - 0x01: 默认值
+    * COMMAND_TYPE
+        + 设备通讯方式
+        + 1 个字节
+            - 0x01: RF
+            - 0x02: ZIGBEE
+    * COMMAND
+        + 需要完整转发给相应的设备的命令
+        + 字节不固定
+    * END
+        + 0xFF
+
+## 2. **服务器到App**
+
+- ACK {HEADER, MAC_ADD, RESULT, END}
+    * HEADER
+        + 0XB0
+    * MAC_ADD
+        + 需要发送命令过去的 Mac 地址
+        + 8 个字节
+    * RESULT
+        + 处理结果
+            - 0x00：转发成功
+            - 0x01：服务器不存在此 Mac 地址的连接
+            - 0x02：其他          
+    * EDN
+        + 0xFF
