@@ -305,10 +305,15 @@
 
 ## 1. **App 到服务器**
 
-- {HEADER, MAC_ADD, MAIN_TYPE, SUB_TYPE, COMMAND_TYPE, COMMAND, END}
+- {HEADER, FROM, MAC_ADD, MAIN_TYPE, SUB_TYPE, COMMAND_TYPE, COMMAND, END}
     * HEADER
-        + 0xA0
+        + 0xABCD
+        + 2 个字节
+    * FROM
+        + 从哪来的
         + 1 个字节
+            - 0x01: iOS
+            - 0x02: Android
     * MAC_ADD
         + 需要服务器转发过去的 Mac 地址
         + 8 个字节
@@ -330,19 +335,23 @@
         + 字节不固定
     * END
         + 0xFF
+        + 1 个字节
 
 ## 2. **服务器到App**
 
 - ACK {HEADER, MAC_ADD, RESULT, END}
     * HEADER
-        + 0XB0
+        + 0XDCBA
+        + 2 个字节
     * MAC_ADD
         + 需要发送命令过去的 Mac 地址
         + 8 个字节
     * RESULT
         + 处理结果
+        + 1 个字节
             - 0x00：转发成功
             - 0x01：服务器不存在此 Mac 地址的连接
             - 0x02：其他          
     * EDN
         + 0xFF
+        + 1 个字节
