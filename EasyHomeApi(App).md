@@ -305,7 +305,7 @@
 
 ## 1. **App 到服务器**
 
-- {HEADER, FROM, MAC_ADD, MAIN_TYPE, SUB_TYPE, COMMAND_TYPE, COMMAND, END}
+- {HEADER, FROM, MAC_ADD, MAIN_TYPE, SUB_TYPE, COMMAND_TYPE, COMMAND_LENGTH, COMMAND, END, ADDITIONAL}
     * HEADER
         + 0xABCD
         + 2 个字节
@@ -330,12 +330,19 @@
         + 1 个字节
             - 0x01: RF
             - 0x02: ZIGBEE
+    * COMMAND_LENGTH
+        + 命令长度
+        + 2 个字节
+            表示后面的 COMMAND 有多少个字节
     * COMMAND
         + 需要完整转发给相应的设备的命令
-        + 字节不固定
+        + 字节数为前面的 COMMAND_LENGTH        
     * END
         + 0xFF
         + 1 个字节
+    * ADDITIONAL
+        + 0x00
+        + 若干个字节，字节数是 256 减去前面的所有的字节数，用于把一条协议补充成 256 个字节长度
 
 ## 2. **服务器到App**
 
@@ -352,6 +359,6 @@
             - 0x00：转发成功
             - 0x01：服务器不存在此 Mac 地址的连接
             - 0x02：其他          
-    * EDN
+    * END
         + 0xFF
         + 1 个字节
